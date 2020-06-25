@@ -4,13 +4,16 @@ class Artist
 
   extend Memorable::ClassMethods
   extend Findable::ClassMethods
+
+  include Memorable::InstanceMethods
+  include Paramable::InstanceMethods
   attr_accessor :name
   attr_reader :songs
 
   @@artists = []
 
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
@@ -39,7 +42,7 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
+  #def to_param
+   # name.downcase.gsub(' ', '-')
+  #end
 end
